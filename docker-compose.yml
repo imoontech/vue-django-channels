@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: vue-django-channels/node
+    command: yarn run dev
+    ports:
+      - "8181:8181"
+    volumes:
+      - ./:/code/
+      - node-modules:/code/node_modules
+
+  yarn:
+    image: vue-django-channels/node
+    command: yarn
+    volumes:
+      - ./:/code/
+      - node-modules:/code/node_modules
+      - yarn-cache:/root/yarn-cache
+
+volumes:
+  node-modules:
+    driver: local
+  yarn-cache:
+    driver: local
