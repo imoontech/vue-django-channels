@@ -20,7 +20,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'vue-django-channels.js'
+    filename: 'index.js'
   },
   module: {
     rules: [

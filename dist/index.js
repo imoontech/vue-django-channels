@@ -560,4 +560,4 @@ module.exports = ReconnectingWebsocket;
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=vue-django-channels.js.map
+//# sourceMappingURL=index.js.map
