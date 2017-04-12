@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './test/main.js',
+  entry: './example/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -46,7 +46,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    // this is required when running in a docker env on a windows host
+    // this is required when running in a docker env on a windows host for hot reloading to work
     watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
