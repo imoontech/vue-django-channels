@@ -1,3 +1,6 @@
+# WIP
+Please do not use at this time
+
 # vue-django-channels
 
 > Django Channels WebSocketBridge handler for Vue.js
