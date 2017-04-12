@@ -1,16 +1,32 @@
 {
   "name": "vue-django-channels",
   "description": "Django Channels WebSocketBridge handler for Vue.js",
-  "version": "1.0.0",
-  "author": "Steven Moon",
-  "private": true,
+  "version": "0.1.0",
+  "homepage": "https://github.com/imoontech/vue-django-channels",
+  "main": "dist/vue-django-channels.js",
+  "author": "Steven Moon @stvnmoon",
+  "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --port 8181",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
+  "keywords": [
+    "vue",
+    "django",
+    "django-channels",
+    "channels",
+    "websocket"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imoontech/vue-django-channels.git"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
-    "vue": "^2.2.1",
-    "django-channels": "^1.1.3"
+    "django-channels": "1.1.3"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -25,6 +41,7 @@
     "vue-style-loader": "^2.0.0",
     "vue-template-compiler": "^2.2.1",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0"
+    "webpack-dev-server": "^2.2.0",
+    "vue": "^2.2.1"
   }
 }

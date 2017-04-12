@@ -1,8 +1,22 @@
 var path = require('path')
 var webpack = require('webpack')
 
+var version = require("./package.json").version;
+var banner = "/**\n" +
+    " * vue-django-channels v" + version + "\n" +
+    " * https://github.com/imoontech/vue-django-channels\n" +
+    " * Released under the MIT License.\n" + " */\n";
+
+
+var entry_file
+if (process.env.NODE_ENV === 'production') {
+  entry_file = './src/index.js'
+} else {
+  entry_file = './example/main.js'
+}
+
 module.exports = {
-  entry: './example/main.js',
+  entry: entry_file,
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -75,6 +89,10 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
+    }),
+    new webpack.BannerPlugin({
+      banner: banner,
+      raw: true
     })
   ])
 }
