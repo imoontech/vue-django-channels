@@ -9,13 +9,15 @@ var banner = "/**\n" +
 
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    'vue-django-channels': './src/index.js'
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'index.js',
-    library: "VueDjangoChannels",
-    libraryTarget: "umd"
+    filename: '[name].js',
+    library: 'VueDjangoChannels',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
@@ -58,6 +60,7 @@ module.exports = {
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
+  module.exports.output.filename = '[name].min.js',
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
@@ -71,7 +74,7 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: false
+      minimize: true
     }),
     new webpack.BannerPlugin({
       banner: banner,

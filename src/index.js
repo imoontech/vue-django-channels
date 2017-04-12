@@ -2,7 +2,7 @@
 
 import { WebSocketBridge } from 'django-channels';
 
-export default {
+let VueDjangoChannels = {
 
     install(Vue, url, protocols, options) {
 
@@ -67,3 +67,5 @@ export default {
         });
     }
 };
+
+export default VueDjangoChannels;
