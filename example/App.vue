@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="dist/logo.png">
+    <img src="example/assets/logo.png">
     <h1></h1>
     <h2>Essential Links</h2>
     <ul>
@@ -30,7 +30,7 @@ import Vue from 'vue'
 import VueDjangoChannels from '../src/index'
 import MyComponent from "./components/MyComponent.vue";
 
-Vue.use(VueDjangoChannels, 'ws://localhost:8000/ws')
+Vue.use(VueDjangoChannels, 'ws://172.16.0.78:8000/ws')
 
 export default {
   name: 'app',
