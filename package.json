@@ -2,13 +2,13 @@
   "name": "vue-django-channels",
   "description": "Django Channels WebSocketBridge handler for Vue.js",
   "version": "0.1.0",
-  "homepage": "https://github.com/imoontech/vue-django-channels",
-  "main": "dist/index.js",
+  "homepage": "dist/index.js",
+  "main": "dist/vue-django-channels.js",
   "author": "Steven Moon @stvnmoon",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --port 8181",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config.js --hot --host 0.0.0.0 --port 8181",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.build.config.js --progress --hide-modules"
   },
   "keywords": [
     "vue",
@@ -26,22 +26,22 @@
     "src"
   ],
   "dependencies": {
-    "django-channels": "1.1.3"
+    "django-channels": "^1.1.3"
   },
   "devDependencies": {
-    "babel-core": "6.0.0",
-    "babel-loader": "6.0.0",
-    "babel-preset-latest": "6.0.0",
-    "cross-env": "3.0.0",
-    "css-loader": "0.25.0",
-    "file-loader": "0.9.0",
-    "node-sass": "4.5.1",
-    "sass-loader": "6.0.3",
-    "vue-loader": "11.1.4",
-    "vue-style-loader": "2.0.0",
-    "vue-template-compiler": "2.2.1",
-    "webpack": "2.2.0",
-    "webpack-dev-server": "2.2.0",
-    "vue": "2.2.1"
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-latest": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "node-sass": "^4.5.1",
+    "sass-loader": "^6.0.3",
+    "vue-loader": "^11.1.4",
+    "vue-style-loader": "^2.0.0",
+    "vue-template-compiler": "^2.2.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0",
+    "vue": "^2.2.1"
   }
 }

@@ -1,22 +1,8 @@
 var path = require('path')
 var webpack = require('webpack')
 
-var version = require("./package.json").version;
-var banner = "/**\n" +
-    " * vue-django-channels v" + version + "\n" +
-    " * https://github.com/imoontech/vue-django-channels\n" +
-    " * Released under the MIT License.\n" + " */\n";
-
-
-var entry_file
-if (process.env.NODE_ENV === 'production') {
-  entry_file = './src/index.js'
-} else {
-  entry_file = './example/main.js'
-}
-
 module.exports = {
-  entry: entry_file,
+  entry: './example/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -70,29 +56,4 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map'
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   sourceMap: true,
-    //   compress: {
-    //     warnings: false
-    //   }
-    // }),
-    // new webpack.LoaderOptionsPlugin({
-    //   minimize: false
-    // }),
-    new webpack.BannerPlugin({
-      banner: banner,
-      raw: true
-    })
-  ])
 }
