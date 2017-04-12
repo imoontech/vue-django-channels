@@ -2,7 +2,7 @@
 
 > Django Channels WebSocketBridge handler for Vue.js
 
-Based on a socket.io implementation - [icebob/vue-websocket](https://github.com/icebob/vue-websocket)
+Based on [vue-websocket](https://github.com/icebob/vue-websocket), a socket.io implementation for vue
 
 Scaffold generated with [vue-cli](https://github.com/vuejs/vue-cli) [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template.
 
@@ -31,13 +31,13 @@ To change the port, these files need updated with the port of your choosing:
 docker-compose build
 ```
 ##### install node dependencies
-> see Dockerfile for why this is done here
+> see `Dockerfile` for why this is done here
 ```commandline
 docker-compose run yarn
 ```
 For some reason yarn and npm fail to install node-sass properly resulting in this error 
 `ENOENT: no such file or directory, scandir '/code/node_modules/node-sass/vendor'`. 
-This may be something with my current config so if you may not get this error. 
+This may be something with my current config so you may not get this error. 
 
 To fix this, run bash in a yarn container and run the `install.js` script:
 ```bash
