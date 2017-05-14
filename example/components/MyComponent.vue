@@ -18,7 +18,7 @@ export default {
         }
       },
       tallydata (action, stream) {
-        console.log('This is my component tallydata: received action: ' + JSON.stringify(action) + ' stream: ' + stream);
+        console.log('This is my-component tallydata stream event: received action: ' + JSON.stringify(action) + ' stream: ' + stream);
       }
     },
     events: {

@@ -35,7 +35,7 @@ Vue.use(VueDjangoChannels, 'ws://localhost:8888/ws')
 export default {
   name: 'app',
   components: {
-      MyComponent, 'my-component': MyComponent
+      MyComponent
   },
   channels: {
     streams: {
