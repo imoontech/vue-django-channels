@@ -38,6 +38,13 @@ let VueDjangoChannels = {
                         this.$channels.socket.removeEventListener(prefix + key, conf.events[key].__binded);
                     });
                 }
+
+                // remove stream handlers
+                if (conf.streams) {
+                    Object.keys(conf.streams).forEach((stream) => {
+                        this.$channels.removeStreamHandler(stream, conf.streams[stream].__binded);
+                    });
+                }
             }
         };
 
@@ -54,23 +61,6 @@ let VueDjangoChannels = {
             }
         };
 
-        let removeStreamHandlers = function () {
-            if (this.$options["channels"]) {
-                let conf = this.$options.channels;
-
-                if (conf.streams) {
-                    Object.keys(conf.streams).forEach((stream) => {
-                        this.$channels.removeStreamHandler(stream, conf.streams[stream].__binded);
-                    });
-                }
-            }
-        };
-
-        let removeHandlers = function () {
-            removeListeners();
-            removeStreamHandlers();
-        };
-
         Vue.mixin({
             // Vue v1.x
             beforeCompile: addListeners,
@@ -79,7 +69,7 @@ let VueDjangoChannels = {
 
             created: addStreamHandlers,
 
-            beforeDestroy: removeHandlers
+            beforeDestroy: removeListeners
         });
     }
 };

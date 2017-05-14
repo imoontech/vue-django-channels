@@ -30,7 +30,7 @@ import Vue from 'vue'
 import VueDjangoChannels from '../src/index'
 import MyComponent from './components/MyComponent.vue'
 
-Vue.use(VueDjangoChannels, 'ws://localhost:8888/ws')
+Vue.use(VueDjangoChannels, 'ws://localhost:8000/ws')
 
 export default {
   name: 'app',

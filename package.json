@@ -1,7 +1,7 @@
 {
   "name": "vue-django-channels",
   "description": "Django Channels WebSocketBridge handler for Vue.js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "dist/index.js",
   "main": "dist/vue-django-channels.js",
   "author": "Steven Moon @stvnmoon",
