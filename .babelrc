@@ -1,7 +1,11 @@
 {
   "presets": [
+    "stage-1",
     ["latest", {
       "es2015": { "modules": false }
     }]
+  ],
+  "plugins": [
+    "transform-object-assign"
   ]
 }

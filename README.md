@@ -38,9 +38,9 @@ docker-compose build
 ```commandline
 docker-compose run yarn
 ```
-For some reason yarn and npm fail to install node-sass properly resulting in this error 
+For some reason, running yarn this way causes npm to fail to run the node-sass install script properly resulting in this error 
 `ENOENT: no such file or directory, scandir '/code/node_modules/node-sass/vendor'`. 
-This may be something with my current config so you may not get this error. 
+This seems to happen every time I run yarn to update with new packages. This may be something with my current config so you may not get this error. 
 
 To fix this, run bash in a yarn container and run the `install.js` script:
 ```bash

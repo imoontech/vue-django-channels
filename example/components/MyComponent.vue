@@ -12,6 +12,11 @@ export default {
   name: 'my-component',
   channels: {
     streams: {
+      echo (action, stream) {
+        if(action.src === 'component') {
+          console.log('This is the echo callback in MyComponent: received action: ' + JSON.stringify(action) + ' stream:' + stream)
+        }
+      },
       tallydata (action, stream) {
         console.log('This is my component tallydata: received action: ' + JSON.stringify(action) + ' stream: ' + stream);
       }
@@ -31,7 +36,8 @@ export default {
     sendEcho: function () {
       let data = {
         time: Date.now(),
-        msg: 'This is my component echo...'
+        msg: 'This is my component echo...',
+        src: 'component'
       }
 
       this.$channels.stream('echo').send(data);

@@ -1,6 +1,6 @@
 // based on [vue-websocket](https://github.com/icebob/vue-websocket)
 
-import { WebSocketBridge } from 'django-channels';
+import { WebSocketBridge } from './WebSocketBridge.js';
 
 export default {
 
@@ -12,7 +12,6 @@ export default {
         webSocketBridge.listen();
 
         Vue.prototype.$channels = webSocketBridge;
-        Vue.prototype.$socket = webSocketBridge.socket;
 
         let addListeners = function () {
             if (this.$options["channels"]) {
@@ -22,7 +21,7 @@ export default {
                     let prefix = conf.prefix || "";
                     Object.keys(conf.events).forEach((key) => {
                         let func = conf.events[key].bind(this);
-                        this.$socket.addEventListener(prefix + key, func);
+                        this.$channels.socket.addEventListener(prefix + key, func);
                         conf.events[key].__binded = func;
                     });
                 }
@@ -36,7 +35,7 @@ export default {
                 if (conf.events) {
                     let prefix = conf.prefix || "";
                     Object.keys(conf.events).forEach((key) => {
-                        this.$socket.removeEventListener(prefix + key, conf.events[key].__binded);
+                        this.$channels.socket.removeEventListener(prefix + key, conf.events[key].__binded);
                     });
                 }
             }
@@ -55,6 +54,23 @@ export default {
             }
         };
 
+        let removeStreamHandlers = function () {
+            if (this.$options["channels"]) {
+                let conf = this.$options.channels;
+
+                if (conf.streams) {
+                    Object.keys(conf.streams).forEach((stream) => {
+                        this.$channels.removeStreamHandler(stream, conf.streams[stream].__binded);
+                    });
+                }
+            }
+        };
+
+        let removeHandlers = function () {
+            removeListeners();
+            removeStreamHandlers();
+        };
+
         Vue.mixin({
             // Vue v1.x
             beforeCompile: addListeners,
@@ -63,7 +79,7 @@ export default {
 
             created: addStreamHandlers,
 
-            beforeDestroy: removeListeners
+            beforeDestroy: removeHandlers
         });
     }
 };

@@ -16,8 +16,8 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
-    <div v-if="wsConnected">Connected to Websocket {{ ws.url }}</div>
-    <div v-else="wsConnected">NOT Connected to Websocket {{ ws.url }}</div>
+    <div v-if="wsConnected">Connected to Websocket {{ $channels.socket.url }}</div>
+    <div v-else="wsConnected">NOT Connected to Websocket {{ $channels.socket.url }}!</div>
     <button @click="sendEcho">Send App Echo</button>
     <br />
     <br />
@@ -28,9 +28,9 @@
 <script>
 import Vue from 'vue'
 import VueDjangoChannels from '../src/index'
-import MyComponent from "./components/MyComponent.vue";
+import MyComponent from './components/MyComponent.vue'
 
-Vue.use(VueDjangoChannels, 'ws://172.16.0.78:8000/ws')
+Vue.use(VueDjangoChannels, 'ws://localhost:8888/ws')
 
 export default {
   name: 'app',
@@ -40,8 +40,10 @@ export default {
   channels: {
     streams: {
       echo (action, stream) {
-        console.log('This is my echo: received action: ' + JSON.stringify(action) + ' stream:' + stream);
-      },
+        if(action.src === 'app') {
+          console.log('This is my App echo: received action: ' + JSON.stringify(action) + ' stream:' + stream)
+        }
+      }
     },
     events: {
       open () {
@@ -54,23 +56,20 @@ export default {
       }
     }
   },
-  created: function () {
-    this.ws = this.$socket
-  },
   methods: {
     sendEcho: function () {
       let data = {
         time: Date.now(),
-        msg: 'This is my App echo...'
+        msg: 'This is my App echo...',
+        src: 'app'
       }
 
-      this.$channels.stream('echo').send(data);
+      this.$channels.stream('echo').send(data)
     }
   },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      ws: null,
       wsConnected: false
     }
   }
